@@ -34,6 +34,20 @@ router.post('/celebrities', (req, res, next) => {
     })
 })
 
+// Delete Celebrity POST
+router.post('/celebrities/:id/delete', (req, res, next) => {
+  Celebrity.findByIdAndRemove({
+    _id: req.params.id
+  })
+  .then(data => {
+    res.redirect('/celebrities/index')
+  })
+  .catch(error => {
+    console.log(error);
+    res.redirect('/celebrities/index')
+  })
+})
+
 // Celebrity Details page
 router.get('/celebrities/:id', (req, res, next) =>{
   let {id} = req.params;

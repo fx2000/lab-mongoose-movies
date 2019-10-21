@@ -2,6 +2,7 @@
 <ul class="celebrities">
   {{#each data}}
   <li><a href="/celebrities/{{id}}">{{name}}</a></li>
+  <form action="/celebrities/{{id}}/delete" method="POST"><button type="submit">Delete</button></form>
   {{/each}}
 </ul>
 </div>
