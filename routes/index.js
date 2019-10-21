@@ -36,9 +36,8 @@ router.post('/celebrities', (req, res, next) => {
 
 // Delete Celebrity POST
 router.post('/celebrities/:id/delete', (req, res, next) => {
-  Celebrity.findByIdAndRemove({
-    _id: req.params.id
-  })
+  let {id} = req.params;
+  Celebrity.findByIdAndRemove(id)
   .then(data => {
     res.redirect('/celebrities/index')
   })
