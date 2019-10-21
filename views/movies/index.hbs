@@ -1,0 +1,11 @@
+<h2>Movies</h2>
+<ul class="movies">
+  {{#each data}}
+  <li><a href="/movies/{{id}}">{{title}}</a></li>
+  <a href="/movies/{{id}}/edit">Edit</a>
+  <form action="/movies/{{id}}/delete" method="POST"><button type="submit">Delete</button></form>
+  {{/each}}
+</ul>
+</div>
+<a href="/movies/new">Add new</a>
+<a href="/movies">Back...</a>
