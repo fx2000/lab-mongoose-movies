@@ -1,5 +1,5 @@
-const express = require('express');
-const router  = express.Router();
+const express   = require('express');
+const router    = express.Router();
 const Celebrity = require('../models/Celebrity');
 
 /* GET home page */
@@ -8,18 +8,18 @@ router.get('/', (req, res, next) => {
 });
 
 // Celebrities page
-router.get('/celebrities', (req, res, next) => {
+router.get('/celebrities/index', (req, res, next) => {
   Celebrity.find()
-    .then(data => {
-      console.log(data);
-      res.render('celebrities', {
-        data,
-        title: 'Celebrities'
-      });
-    })
-    .catch(error => {
-      console.log('Error while getting the celebrities from the DB: ', error);
-    })
+    .then(data => {res.render('celebrities', {data})})
+    .catch(error => {console.log('Error while getting the celebrities from the DB: ', error)})
 });
+
+// Celebrity Details page
+router.get('/celebrities/:id', (req, res, next) =>{
+  let {id} = req.params;
+  Celebrity.findById(id)
+    .then(data => {res.render('celebrities/show', {data})})
+    .catch(error => {console.log('Error finding celebrity', error)})
+})
 
 module.exports = router;
