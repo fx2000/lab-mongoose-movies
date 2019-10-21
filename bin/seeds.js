@@ -25,15 +25,16 @@ const celebrities = [
   }
 ]
 
+// Add new celebrities from seed to database
 const createCelebrities = celebrities.map(celebrity => {
   const newCelebrity = new Celebrity(celebrity)
   return newCelebrity.save()
     .then(celebrity => {
-      console.log(celebrity);
+      console.log('Celebrity created correctly: ', celebrity);
       mongoose.connection.close();
     })
     .catch(error => {
-      throw new Error(`Impossible to add the cle. ${error}`)
+      throw new Error(`Impossible to add the celebrity. ${error}`);
       mongoose.connection.close();
     })
 })
